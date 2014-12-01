@@ -40,7 +40,7 @@ NSArray *colors = @[
     [UIColor colorWithRed:(50.0/255.0) green:(2.0/255.0) blue:(5.0/255.0) alpha:1.0]
 ];
 
-PRGradientView *gradientView = [[PRGradientView alloc] initWithRadialGradientViewUsingColors:colors withFrame:self.view.frame];
+PRGradientView *gradientView = [[PRGradientView alloc] initWithLinearGradientViewUsingColors:colors withFrame:self.view.frame];
 
 //now do whatever you want with the view, such as adding it as a subview somewhere
 ...
