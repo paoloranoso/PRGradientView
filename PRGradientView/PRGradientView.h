@@ -34,7 +34,10 @@ typedef NS_ENUM(NSInteger, PRGradientType) {
 };
 
 @interface PRGradientView : UIView
-+(void)addGradientViewAsBackgroundToView:(UIView *)view withType:(PRGradientType)type usingColors:(NSArray *)colors;  //convenience method for those who want to have a gradient as their main background view
+//convenience method for those who want to have a gradient as their main background view
++(void)addGradientViewAsBackgroundToView:(UIView *)view withType:(PRGradientType)type usingColors:(NSArray *)colors;
+
 -(id)initWithRadialGradientViewUsingColors:(NSArray *)colors withFrame:(CGRect)frame;
 -(id)initWithLinearGradientViewUsingColors:(NSArray *)colors withFrame:(CGRect)frame;
+-(id)initWithLinearGradientViewUsingColors:(NSArray *)colors withFrame:(CGRect)frame startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 @end

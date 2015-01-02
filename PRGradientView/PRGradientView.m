@@ -32,6 +32,8 @@
 @interface PRGradientView ()
 @property (nonatomic, copy) NSArray *gradientColors;
 @property (nonatomic, assign) PRGradientType gradientType;
+@property (nonatomic, assign) CGPoint linearGradientStartPoint;
+@property (nonatomic, assign) CGPoint linearGradientEndPoint;
 @end
 
 @implementation PRGradientView
@@ -47,6 +49,7 @@
     [view sendSubviewToBack:gradientView];
 }
 
+
 -(id)initWithRadialGradientViewUsingColors:(NSArray *)colors withFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
         self.gradientColors = colors;
@@ -57,11 +60,18 @@
 
 
 -(id)initWithLinearGradientViewUsingColors:(NSArray *)colors withFrame:(CGRect)frame{
+    return [self initWithLinearGradientViewUsingColors:colors withFrame:frame startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, frame.size.height)];
+}
+
+
+-(id)initWithLinearGradientViewUsingColors:(NSArray *)colors withFrame:(CGRect)frame startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint{
     if (self = [super initWithFrame:frame]){
         self.gradientColors = colors;
         self.gradientType = PRGradientTypeLinear;
+        self.linearGradientStartPoint = startPoint;
+        self.linearGradientEndPoint = endPoint;
     }
-    return self;
+    return self;    
 }
 
 
@@ -79,8 +89,8 @@
     
     if (_gradientType == PRGradientTypeRadial) {
         CGContextDrawRadialGradient(ref, gradient, CGPointMake(self.frame.size.width/2,self.frame.size.height/2), 0, CGPointMake(self.frame.size.width/2,self.frame.size.height/2), self.frame.size.width + kGradientViewPadding, 0);
-    }else{
-        CGContextDrawLinearGradient(ref, gradient , CGPointMake(0, 0), CGPointMake(0,self.frame.size.height), kCGGradientDrawsAfterEndLocation);
+    }else{ //_gradientType == PRGradientTypeLinear
+        CGContextDrawLinearGradient(ref, gradient , _linearGradientStartPoint, _linearGradientEndPoint, kCGGradientDrawsAfterEndLocation);
     }
     
     CGColorSpaceRelease(colorSpc);

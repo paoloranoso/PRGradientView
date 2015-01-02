@@ -47,9 +47,3 @@ PRGradientView *gradientView = [[PRGradientView alloc] initWithLinearGradientVie
 ```
 
 ![](assets/linear_gradient_example.png)
-
-
-## TODO
-* Be able specify from and to points, so you can for example, not just only have vertical linear gradients
-* Have convenience methods for linear gradients, such as left-to-right (makes use of method mentioned above with preset points)
-* ???
